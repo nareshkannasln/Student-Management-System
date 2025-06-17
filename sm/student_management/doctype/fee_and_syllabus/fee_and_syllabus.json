@@ -1,0 +1,83 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "Class",
+ "creation": "2025-06-16 15:06:36.395102",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "class",
+  "subject",
+  "tution_fee",
+  "miscallneous_fee",
+  "total",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "class",
+   "fieldtype": "Data",
+   "label": "Class"
+  },
+  {
+   "fieldname": "tution_fee",
+   "fieldtype": "Int",
+   "label": "Tution fee"
+  },
+  {
+   "fieldname": "miscallneous_fee",
+   "fieldtype": "Int",
+   "label": "miscellaneous Fee"
+  },
+  {
+   "fieldname": "total",
+   "fieldtype": "Int",
+   "label": "Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fee Structure",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "subject",
+   "fieldtype": "Table",
+   "label": "Subject",
+   "options": "Subject"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-06-16 15:40:29.535172",
+ "modified_by": "Administrator",
+ "module": "Student Management",
+ "name": "Fee and Syllabus",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,48 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-06-12 17:03:44.997419",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "previous_marks_section",
+  "subject",
+  "marks"
+ ],
+ "fields": [
+  {
+   "fieldname": "subject",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Subject",
+   "reqd": 1
+  },
+  {
+   "fieldname": "marks",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Marks",
+   "reqd": 1
+  },
+  {
+   "fieldname": "previous_marks_section",
+   "fieldtype": "Section Break",
+   "label": "Previous Marks"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-06-12 18:08:23.555735",
+ "modified_by": "Administrator",
+ "module": "Student Management",
+ "name": "Previous Marks",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

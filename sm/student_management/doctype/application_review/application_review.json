@@ -1,0 +1,105 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "AR.#####",
+ "creation": "2025-06-12 17:11:15.841351",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "admission_application",
+  "name1",
+  "gender",
+  "dob",
+  "class_applied_for",
+  "previous_mark",
+  "status",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Approve\nReject"
+  },
+  {
+   "fieldname": "admission_application",
+   "fieldtype": "Link",
+   "label": "Admission Application",
+   "options": "Admission Application"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Application Review",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "admission_application.gender",
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "label": "Gender",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "admission_application.date_of_birth",
+   "fieldname": "dob",
+   "fieldtype": "Data",
+   "label": "DOB",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "admission_application.class_applying_for",
+   "fieldname": "class_applied_for",
+   "fieldtype": "Data",
+   "label": "Class Applied for",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "admission_application.total",
+   "fieldname": "previous_mark",
+   "fieldtype": "Data",
+   "label": "Previous Mark",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "admission_application.name1",
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-06-16 12:39:37.839866",
+ "modified_by": "Administrator",
+ "module": "Student Management",
+ "name": "Application Review",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,66 +1,59 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "prompt",
- "creation": "2025-06-16 15:06:36.395102",
+ "creation": "2025-06-18 11:47:35.208885",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "class",
-  "subject",
-  "tution_fee",
-  "miscallneous_fee",
-  "total",
+  "name1",
+  "amount",
   "amended_from"
  ],
  "fields": [
   {
+   "fieldname": "name1",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Name",
+   "options": "Admission Application",
+   "reqd": 1
+  },
+  {
    "fieldname": "class",
-   "fieldtype": "Data",
-   "label": "Class"
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Class",
+   "options": "Fee and Syllabus",
+   "reqd": 1
   },
   {
-   "fieldname": "tution_fee",
+   "fieldname": "amount",
    "fieldtype": "Int",
-   "label": "Tution fee"
-  },
-  {
-   "fieldname": "miscallneous_fee",
-   "fieldtype": "Int",
-   "label": "miscellaneous Fee"
-  },
-  {
-   "fieldname": "total",
-   "fieldtype": "Int",
-   "label": "Total",
-   "read_only": 1
+   "in_list_view": 1,
+   "label": "Amount",
+   "non_negative": 1,
+   "reqd": 1
   },
   {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Fee and Syllabus",
+   "options": "Fee Payment",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
-  },
-  {
-   "fieldname": "subject",
-   "fieldtype": "Table",
-   "label": "Subject",
-   "options": "Subject"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-17 12:22:34.286147",
+ "modified": "2025-06-18 13:10:31.932298",
  "modified_by": "Administrator",
  "module": "Student Management",
- "name": "Fee and Syllabus",
- "naming_rule": "Set by user",
+ "name": "Fee Payment",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,18 +1,16 @@
 {
  "actions": [],
- "allow_rename": 1,
- "autoname": "Application_No.#####",
  "creation": "2025-06-12 16:33:51.613594",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "admission_application_section",
   "name1",
   "date_of_birth",
   "gender",
   "class_applying_for",
   "previous_standard_marks",
   "total",
-  "phone",
   "email",
   "amended_from"
  ],
@@ -26,23 +24,19 @@
   },
   {
    "fieldname": "class_applying_for",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Class Applying for",
-   "options": "X\nXI - BIO\nXII - BIO",
+   "options": "Fee and Syllabus",
    "reqd": 1
-  },
-  {
-   "fieldname": "phone",
-   "fieldtype": "Phone",
-   "label": "Phone"
   },
   {
    "fieldname": "email",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Email",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "total",
@@ -76,6 +70,11 @@
    "reqd": 1
   },
   {
+   "fieldname": "admission_application_section",
+   "fieldtype": "Section Break",
+   "label": "Admission Application"
+  },
+  {
    "fieldname": "name1",
    "fieldtype": "Data",
    "label": "Name",
@@ -84,13 +83,11 @@
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2025-06-16 16:16:15.445980",
+ "modified": "2025-06-18 15:52:42.015333",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Admission Application",
- "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

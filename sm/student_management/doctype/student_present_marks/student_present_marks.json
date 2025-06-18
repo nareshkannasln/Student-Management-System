@@ -1,66 +1,80 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "prompt",
- "creation": "2025-06-16 15:06:36.395102",
+ "creation": "2025-06-17 12:49:14.950102",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "student_present_marks_section",
   "class",
-  "subject",
-  "tution_fee",
-  "miscallneous_fee",
+  "name1",
+  "test_name",
+  "marks",
   "total",
   "amended_from"
  ],
  "fields": [
   {
    "fieldname": "class",
-   "fieldtype": "Data",
-   "label": "Class"
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Class",
+   "options": "Fee and Syllabus",
+   "reqd": 1
   },
   {
-   "fieldname": "tution_fee",
-   "fieldtype": "Int",
-   "label": "Tution fee"
+   "fieldname": "name1",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Name",
+   "options": "Admission Application",
+   "reqd": 1
   },
   {
-   "fieldname": "miscallneous_fee",
-   "fieldtype": "Int",
-   "label": "miscellaneous Fee"
+   "fieldname": "marks",
+   "fieldtype": "Table",
+   "label": "Marks",
+   "options": "Present Marks",
+   "reqd": 1
   },
   {
    "fieldname": "total",
    "fieldtype": "Int",
+   "in_list_view": 1,
    "label": "Total",
    "read_only": 1
+  },
+  {
+   "fieldname": "student_present_marks_section",
+   "fieldtype": "Section Break",
+   "label": "Student Present Marks"
+  },
+  {
+   "fieldname": "test_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Test Name",
+   "reqd": 1
   },
   {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Fee and Syllabus",
+   "options": "Student Present Marks",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
-  },
-  {
-   "fieldname": "subject",
-   "fieldtype": "Table",
-   "label": "Subject",
-   "options": "Subject"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-17 12:22:34.286147",
+ "modified": "2025-06-18 16:05:33.489411",
  "modified_by": "Administrator",
  "module": "Student Management",
- "name": "Fee and Syllabus",
- "naming_rule": "Set by user",
+ "name": "Student Present Marks",
  "owner": "Administrator",
  "permissions": [
   {

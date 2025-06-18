@@ -6,28 +6,17 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "admission_application",
+  "admission_application_section",
+  "column_break_ohrh",
+  "admission_id",
   "name1",
-  "gender",
   "dob",
+  "gender",
   "class_applied_for",
   "previous_mark",
-  "status",
   "amended_from"
  ],
  "fields": [
-  {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Approve\nReject"
-  },
-  {
-   "fieldname": "admission_application",
-   "fieldtype": "Link",
-   "label": "Admission Application",
-   "options": "Admission Application"
-  },
   {
    "fieldname": "amended_from",
    "fieldtype": "Link",
@@ -39,46 +28,73 @@
    "search_index": 1
   },
   {
-   "fetch_from": "admission_application.gender",
+   "fetch_from": "admission_id.gender",
    "fieldname": "gender",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Gender",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
-   "fetch_from": "admission_application.date_of_birth",
+   "fetch_from": "admission_id.date_of_birth",
    "fieldname": "dob",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "DOB",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
-   "fetch_from": "admission_application.class_applying_for",
+   "fetch_from": "admission_id.class_applying_for",
    "fieldname": "class_applied_for",
    "fieldtype": "Data",
    "label": "Class Applied for",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
-   "fetch_from": "admission_application.total",
+   "fetch_from": "admission_id.total",
    "fieldname": "previous_mark",
    "fieldtype": "Data",
    "label": "Previous Mark",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "admission_application_section",
+   "fieldtype": "Section Break",
+   "label": "Admission Application"
+  },
+  {
+   "fieldname": "admission_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Admission ID",
+   "options": "Admission Application",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ohrh",
+   "fieldtype": "Column Break",
    "read_only": 1
   },
   {
-   "fetch_from": "admission_application.name1",
+   "fetch_from": "admission_id.name1",
    "fieldname": "name1",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Name",
-   "read_only": 1
+   "options": "Admission Application",
+   "read_only": 1,
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-16 12:39:37.839866",
+ "modified": "2025-06-18 16:47:27.977501",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Application Review",

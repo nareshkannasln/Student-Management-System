@@ -13,3 +13,8 @@ class FeeandSyllabus(Document):
         self.total = (self.tution_fee or 0) + (self.miscallneous_fee or 0)
 
 
+    def autoname(self):
+        name = getattr(self, "class")
+        self.name = name
+
+

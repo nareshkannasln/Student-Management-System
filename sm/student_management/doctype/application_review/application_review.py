@@ -16,15 +16,12 @@ class ApplicationReview(Document):
             self.send_rejection_email(admission)
 
     def create_admitted_students(self, admission):
-        # 1. Get total fee from Fee and Syllabus
         total_fee = frappe.get_value("Fee and Syllabus", {"class": admission.class_applying_for}, "total")
 
-        # 2. Prevent duplicate
         if frappe.db.exists("Admitted Student", {"admission_id": admission.name}):
-            frappe.msgprint("⚠️ Student already exists in Admitted Student.")
+            frappe.msgprint("Student already exists in Admitted Student.")
             return
 
-        # 3. Create Website User (if not already exists)
         user_email = admission.email
         if not frappe.db.exists("User", user_email):
             user = frappe.new_doc("User")
@@ -35,7 +32,6 @@ class ApplicationReview(Document):
             user.append("roles", {"role": "Student Portal User"})
             user.insert(ignore_permissions=True)
 
-        # 4. Create Admitted Student and link to User
         admitted_doc = frappe.new_doc("Admitted Student")
         admitted_doc.student_name = admission.name
         admitted_doc.email = user_email
@@ -43,10 +39,9 @@ class ApplicationReview(Document):
         admitted_doc.admission_id = admission.name
         admitted_doc.total_fee = total_fee or 0
         admitted_doc.status = "Admitted"
-        admitted_doc.user_id = user_email  # Link to User
+        admitted_doc.user_id = user_email
         admitted_doc.insert(ignore_permissions=True)
 
-        # 5. Create User Permission (limit user to only their Admitted Student record)
         if not frappe.db.exists("User Permission", {
             "user": user_email,
             "allow": "Admitted Student",
@@ -60,120 +55,88 @@ class ApplicationReview(Document):
                 "apply_to_all_doctypes": 0
             }).insert(ignore_permissions=True)
 
-        # 6. Success message
-        frappe.msgprint(f"✅ Admitted Student and Website User created for {admission.name}")
-
+        frappe.msgprint(f"Admitted Student and Website User created for {admission.name}")
 
     def send_welcome_email(self, admission):
         recipient_email = admission.email
         student_name = admission.name
         student_class = admission.class_applying_for
 
-        if not recipient_email:
-            frappe.msgprint("⛔ Email not sent: recipient email is missing.")
-            return
+        fee_doc = frappe.get_doc("Fee and Syllabus", {"class": student_class})
+        total_fee = fee_doc.total
+        subjects = [row.subject for row in fee_doc.subject]
+        subject_html = "<ul>" + "".join([f"<li>{sub}</li>" for sub in subjects]) + "</ul>" if subjects else "N/A"
 
-        try:
-            # Get Fee and Syllabus details
-            fee_doc = frappe.get_doc("Fee and Syllabus", {"class": student_class})
-            total_fee = fee_doc.total
-            subjects = [row.subject for row in fee_doc.subject]
+        base_url = get_url()
+        pay_url = f"{base_url}/fee-payment"
 
-            # Subject list as HTML
-            subject_html = "<ul>" + "".join([f"<li>{sub}</li>" for sub in subjects]) + "</ul>" if subjects else "N/A"
+        subject = f"Admission Approved - Class {student_class}"
+        message = f"""
+        <p>Dear {student_name},</p>
 
-            # ✅ Simplified and secure payment URL using only email
-            base_url = get_url()
-            pay_url = f"{base_url}/fee-payment"
+        <p>Your application for admission to Class {student_class} has been approved.</p>
 
-            # Email Subject
-            subject = f"🎉 Admission Approved - Welcome to Class {student_class}"
+        <p>Please find the syllabus and fee structure below. Proceed to pay your fee using the link provided.</p>
 
-            # Email Body
-            message = f"""
-            <p>Dear <strong>{student_name}</strong>,</p>
+        <h4>Syllabus</h4>
+        {subject_html}
 
-            <p>🎉 <strong>Congratulations!</strong> Your application for <strong>Class {student_class}</strong> has been 
-            <span style="color:green;"><strong>approved</strong></span>.</p>
+        <h4>Fee Structure</h4>
+        <table border='1' cellpadding='5'>
+            <tr><th>Fee Type</th><th>Amount (₹)</th></tr>
+            <tr><td>Tuition Fee</td><td>{fee_doc.tuition_fee}</td></tr>
+            <tr><td>Miscellaneous Fee</td><td>{fee_doc.miscellaneous_fee}</td></tr>
+            <tr><td><strong>Total</strong></td><td><strong>{total_fee}</strong></td></tr>
+        </table>
 
-            <p>We’re thrilled to welcome you! Here's what's next:</p>
+        <br>
+        <a href="{pay_url}" style="
+            background-color:#007bff;
+            color:white;
+            padding:10px 20px;
+            text-decoration:none;
+            border-radius:5px;
+            display:inline-block;">
+            Proceed to Fee Payment
+        </a>
 
-            <ul>
-                <li>📚 Below is your syllabus and fee structure.</li>
-                <li>💳 Please complete your fee payment using the button below.</li>
-                <li>📩 You'll soon receive your class schedule and login credentials.</li>
-            </ul>
+        <p>If you have any questions, please contact the admissions office.</p>
 
-            <h4>📘 Syllabus</h4>
-            {subject_html}
+        <p>Regards,<br>
+        Admissions Team</p>
+        """
 
-            <h4>💰 Fee Structure</h4>
-            <table border='1' cellpadding='5'>
-                <tr><th>Fee Type</th><th>Amount (₹)</th></tr>
-                <tr><td>Tuition Fee</td><td>{fee_doc.tuition_fee}</td></tr>
-                <tr><td>Miscellaneous Fee</td><td>{fee_doc.miscellaneous_fee}</td></tr>
-                <tr><td><strong>Total</strong></td><td><strong>{total_fee}</strong></td></tr>
-            </table>
+        frappe.sendmail(
+            recipients=[recipient_email],
+            subject=subject,
+            message=message
+        )
 
-            <br>
-            <a href="{pay_url}" style="
-                background-color:#4CAF50;
-                color:white;
-                padding:10px 20px;
-                text-decoration:none;
-                border-radius:5px;
-                display:inline-block;">
-                Pay Fee Now
-            </a>
-
-            <p>If you have any questions, feel free to contact our admissions team.</p>
-
-            <p>Warm regards,<br>
-            <strong>Admissions Team</strong></p>
-            """
-
-            frappe.sendmail(
-                recipients=[recipient_email],
-                subject=subject,
-                message=message
-            )
-            frappe.msgprint("✅ Admission approval email sent.")
-        except Exception as e:
-            frappe.log_error(frappe.get_traceback(), "Combined Welcome Email Error")
-            frappe.msgprint(f"❌ Failed to send welcome email: {str(e)}")
-
+        frappe.msgprint("Admission approval email sent.")
 
     def send_rejection_email(self, admission):
         recipient_email = admission.email
         student_name = admission.name
         student_class = admission.class_applying_for
 
-        if not recipient_email:
-            frappe.msgprint("⛔ Email not sent: recipient email is missing.")
-            return
-
         subject = f"Application Status - Class {student_class}"
-
         message = f"""
-        <p>Dear <strong>{student_name}</strong>,</p>
+        <p>Dear {student_name},</p>
 
-        <p>Thank you for your interest in <strong>Class {student_class}</strong>.</p>
+        <p>Thank you for applying to Class {student_class}.</p>
 
-        <p>After review, we regret to inform you that your admission was not approved at this time.</p>
-        
-        <p>Wishing you the best in your journey.</p>
+        <p>We regret to inform you that your application was not approved.</p>
+
+        <p>We appreciate your interest and wish you success in the future.</p>
 
         <p>Sincerely,<br>
-        <strong>Admissions Committee</strong></p>
+        Admissions Committee</p>
         """
 
-        try:
-            frappe.sendmail(
-                recipients=[recipient_email],
-                subject=subject,
-                message=message
-            )
-            frappe.msgprint("📭 Rejection email sent.")
-        except Exception as e:
-            frappe.log_error(frappe.get_traceback(), "Rejection Email Sending Error")
-            frappe.msgprint(f"❌ Failed to send rejection email: {str(e)}")
+        frappe.sendmail(
+            recipients=[recipient_email],
+            subject=subject,
+            message=message
+        )
+
+        frappe.msgprint("Rejection email sent.")

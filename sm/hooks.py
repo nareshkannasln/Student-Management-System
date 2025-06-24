@@ -5,6 +5,11 @@ app_description = "Managing student management"
 app_email = "nareshkannashanmugam@gmail.com"
 app_license = "mit"
 
+
+web_form_include_js = {
+    "fee-payment": "public/js/fee_payment.js"
+}
+
 # Apps
 # ------------------
 

@@ -10,7 +10,8 @@
   "email",
   "class",
   "total_fee",
-  "user_id"
+  "user_id",
+  "amended_from"
  ],
  "fields": [
   {
@@ -59,12 +60,22 @@
    "fieldtype": "Link",
    "label": "User ID",
    "options": "User"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Admitted Student",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-23 18:28:37.772938",
+ "modified": "2025-06-24 17:20:53.609419",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Admitted Student",

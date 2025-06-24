@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "autoname": "APPLICATION-.#####",
  "creation": "2025-06-12 16:33:51.613594",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -84,10 +85,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-19 15:56:21.656942",
+ "modified": "2025-06-20 16:49:19.729083",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Admission Application",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "AR.#####",
+ "autoname": "APPLICATION-REVIEW.#####",
  "creation": "2025-06-12 17:11:15.841351",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -14,7 +14,9 @@
   "gender",
   "class_applied_for",
   "previous_mark",
-  "amended_from"
+  "email",
+  "amended_from",
+  "status"
  ],
  "fields": [
   {
@@ -67,30 +69,47 @@
    "label": "Admission Application"
   },
   {
-   "fieldname": "admission_id",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Admission ID",
-   "options": "Admission Application",
-   "reqd": 1
-  },
-  {
    "fieldname": "column_break_ohrh",
    "fieldtype": "Column Break",
    "read_only": 1
   },
-{
-  "fetch_from": "admission_id.name1",
-  "fieldtype": "Data",
-  "fieldname": "name1"
-}
-
+  {
+   "fetch_from": "admission_id.name1",
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Approve\nReject",
+   "reqd": 1
+  },
+  {
+   "fieldname": "admission_id",
+   "fieldtype": "Link",
+   "label": "Admission ID",
+   "options": "Admission Application",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "admission_id.email",
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "read_only": 1,
+   "reqd": 1
+  }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-18 16:47:27.977501",
+ "modified": "2025-06-23 11:05:51.133903",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Application Review",

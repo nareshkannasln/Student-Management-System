@@ -1,30 +1,41 @@
 {
  "actions": [],
- "allow_rename": 1,
- "creation": "2025-06-18 11:47:35.208885",
+ "creation": "2025-06-23 16:40:16.456397",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "class",
+  "fee_payment_section",
+  "roll_no",
   "name1",
+  "class",
+  "total_fee",
   "amount",
   "amended_from"
  ],
  "fields": [
   {
+   "fetch_from": "roll_no.student_name",
    "fieldname": "name1",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Name",
-   "options": "Admission Application",
    "reqd": 1
   },
   {
+   "fetch_from": "roll_no.class",
    "fieldname": "class",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Class",
-   "options": "Fee and Syllabus",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "roll_no.total_fee",
+   "fieldname": "total_fee",
+   "fieldtype": "Data",
+   "label": "Total Fee",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -36,6 +47,14 @@
    "reqd": 1
   },
   {
+   "fieldname": "roll_no",
+   "fieldtype": "Link",
+   "label": "Roll No",
+   "options": "Admitted Student",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -44,31 +63,21 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "fee_payment_section",
+   "fieldtype": "Section Break",
+   "label": "Fee Payment"
   }
  ],
- "grid_page_length": 50,
- "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-18 13:10:31.932298",
+ "modified": "2025-06-24 13:17:07.562678",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Fee Payment",
  "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
+ "permissions": [],
  "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",

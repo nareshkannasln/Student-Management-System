@@ -7,28 +7,12 @@
  "field_order": [
   "class",
   "subject",
-  "tution_fee",
-  "miscallneous_fee",
+  "tuition_fee",
+  "miscellaneous_fee",
   "total",
   "amended_from"
  ],
  "fields": [
-  {
-   "fieldname": "tution_fee",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "Tution fee",
-   "non_negative": 1,
-   "reqd": 1
-  },
-  {
-   "fieldname": "miscallneous_fee",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "miscellaneous Fee",
-   "non_negative": 1,
-   "reqd": 1
-  },
   {
    "fieldname": "total",
    "fieldtype": "Int",
@@ -58,12 +42,28 @@
    "label": "Class",
    "options": "X\nXI-BIO\nXII-BIO\nXI-PS\nXII-PS\nXI-COM\nXII-COM\nXI-ARTS\nXII-ARTS",
    "reqd": 1
+  },
+  {
+   "fieldname": "tuition_fee",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Tuition fee",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "miscellaneous_fee",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "miscellaneous Fee",
+   "non_negative": 1,
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-19 15:27:12.475038",
+ "modified": "2025-06-23 18:09:46.943253",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Fee and Syllabus",

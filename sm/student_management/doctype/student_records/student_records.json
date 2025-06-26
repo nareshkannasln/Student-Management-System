@@ -6,8 +6,9 @@
  "engine": "InnoDB",
  "field_order": [
   "student_present_marks_section",
-  "class",
+  "roll_no",
   "name1",
+  "class",
   "test_name",
   "marks",
   "total",
@@ -15,16 +16,17 @@
  ],
  "fields": [
   {
+   "fetch_from": "roll_no.class",
    "fieldname": "class",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Class",
-   "options": "Fee and Syllabus",
    "reqd": 1
   },
   {
+   "fetch_from": "roll_no.student_name",
    "fieldname": "name1",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Name",
    "options": "Admission Application",
@@ -61,17 +63,23 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Student Present Marks",
+   "options": "Student Records",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "roll_no",
+   "fieldtype": "Link",
+   "label": "Roll No",
+   "options": "Admitted Student"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-26 12:37:51.604528",
+ "modified": "2025-06-26 12:58:47.328694",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Student Records",

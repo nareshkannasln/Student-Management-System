@@ -1,0 +1,9 @@
+<h2>Welcome, {{ frappe.session.user }}</h2>
+
+{% if message %}
+  <div class="alert alert-warning">{{ message }}</div>
+{% endif %}
+
+{% if show_test_button %}
+  <a href="/test-records" class="btn btn-primary">View Test Records</a>
+{% endif %}

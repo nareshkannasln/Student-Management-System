@@ -5,10 +5,24 @@ app_description = "Managing student management"
 app_email = "nareshkannashanmugam@gmail.com"
 app_license = "mit"
 
+# def my_method():
+#     from sm.api import get_admitted_student_details
+#     student_id = "DYNAMICALLY_FETCHED_ID"  # e.g., from session or another doc
+#     details = get_admitted_student_details(student_id)
+#     print(details)
+
+# import sm.api
+
+on_session_creation = [
+    "sm.auth.validate_fee_status"
+]
+
+
 
 web_form_include_js = {
     "fee-payment": "public/js/fee_payment.js"
 }
+website_user_home_page = "my-account"
 
 # Apps
 # ------------------

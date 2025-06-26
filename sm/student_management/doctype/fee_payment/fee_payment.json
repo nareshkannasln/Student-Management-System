@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{DD}{MM}{YY}-TXID{####}",
  "creation": "2025-06-24 17:06:58.501744",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -51,10 +52,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-24 17:09:13.417541",
+ "modified": "2025-06-26 11:59:56.883427",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Fee Payment",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

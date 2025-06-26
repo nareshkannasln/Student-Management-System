@@ -47,7 +47,7 @@
   {
    "fieldname": "student_present_marks_section",
    "fieldtype": "Section Break",
-   "label": "Student Present Marks"
+   "label": "Student Records"
   },
   {
    "fieldname": "test_name",
@@ -71,10 +71,10 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-18 16:05:33.489411",
+ "modified": "2025-06-26 12:37:51.604528",
  "modified_by": "Administrator",
  "module": "Student Management",
- "name": "Student Present Marks",
+ "name": "Student Records",
  "owner": "Administrator",
  "permissions": [
   {

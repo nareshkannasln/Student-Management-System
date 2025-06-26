@@ -1,7 +1,7 @@
 import frappe
 from frappe.model.document import Document
 
-class StudentPresentMarks(Document):
+class StudentRecords(Document):
     def validate(self):
         total = 0
         for row in self.marks:

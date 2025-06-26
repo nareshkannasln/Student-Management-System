@@ -1,4 +1,4 @@
-frappe.ui.form.on('Student Present Marks', {
+frappe.ui.form.on('Student Records', {
     class: function(frm) {
         // Fetch approved students for this class
         if (!frm.doc.class) return;

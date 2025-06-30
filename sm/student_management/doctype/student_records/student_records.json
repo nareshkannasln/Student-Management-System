@@ -12,7 +12,8 @@
   "test_name",
   "marks",
   "total",
-  "amended_from"
+  "amended_from",
+  "email"
  ],
  "fields": [
   {
@@ -73,13 +74,20 @@
    "fieldtype": "Link",
    "label": "Roll No",
    "options": "Admitted Student"
+  },
+  {
+   "fetch_from": "roll_no.email",
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "email",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-26 12:58:47.328694",
+ "modified": "2025-06-30 16:46:38.379639",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Student Records",

@@ -4,6 +4,7 @@ app_publisher = "Nareshkanna"
 app_description = "Managing student management"
 app_email = "nareshkannashanmugam@gmail.com"
 app_license = "mit"
+app_logo_url = "/assets/sm/favicon.ico"
 
 # def my_method():
 #     from sm.api import get_admitted_student_details
@@ -13,16 +14,28 @@ app_license = "mit"
 
 # import sm.api
 
-on_session_creation = [
-    "sm.auth.validate_fee_status"
-]
-
-
-
-web_form_include_js = {
-    "fee-payment": "public/js/fee_payment.js"
+# on_session_creation = [
+#     "sm.auth.validate_fee_status"
+# ]
+has_permission = {
+    "Student Records": "sm.student_management.doctype.student_records.student_records.has_permission"
 }
-website_user_home_page = "my-account"
+
+permission_query_conditions = {
+    "Student Records": "sm.student_management.doctype.student_records.student_records.get_permission_query_conditions"
+}
+
+
+def on_session_creation(login_manager):
+    user = frappe.get_doc("User", login_manager.user)
+    if "Student" in user.roles:
+        admission_id = frappe.get_value("Admitted Student", {"email": user.email}, "name")
+        total_fee = frappe.db.get_value("Admitted Student", admission_id, "total_fee")
+        paid = frappe.db.sql("SELECT SUM(amount) FROM `tabFee Payment` WHERE admission_id=%s", admission_id)[0][0] or 0
+        if paid < total_fee:
+            frappe.throw("Please complete your fee payment before logging in.")
+
+
 
 # Apps
 # ------------------

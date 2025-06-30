@@ -52,7 +52,7 @@
   },
   {
    "fieldname": "balance_fee",
-   "fieldtype": "Currency",
+   "fieldtype": "Int",
    "label": "Balance Fee",
    "read_only": 1
   },
@@ -66,7 +66,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-26 16:53:59.744167",
+ "modified": "2025-06-30 13:41:29.244393",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Fee Payment",

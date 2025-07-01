@@ -1,32 +1,27 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-06-19 15:13:00.684820",
+ "creation": "2025-07-01 15:47:13.888089",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "class"
+  "section_break_yvb1"
  ],
  "fields": [
   {
-   "fieldname": "class",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Class",
-   "options": "X\nXI-BIO\nXII-BIO\nXI-PS\nXII-PS\nXI-COM\nXII-COM\nXI-ARTS\nXII-ARTS",
-   "reqd": 1
+   "fieldname": "section_break_yvb1",
+   "fieldtype": "Section Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-19 15:19:42.156838",
+ "modified": "2025-07-01 15:47:13.888089",
  "modified_by": "Administrator",
  "module": "Student Management",
- "name": "Class",
- "nsm_parent_field": "parent_class",
+ "name": "Subjects-master",
  "owner": "Administrator",
- "permissions": [``
+ "permissions": [
   {
    "create": 1,
    "delete": 1,

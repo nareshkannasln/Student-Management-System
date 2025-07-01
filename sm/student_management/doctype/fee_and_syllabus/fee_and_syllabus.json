@@ -1,69 +1,49 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-06-16 15:06:36.395102",
+ "creation": "2025-07-01 16:31:00.911680",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "class",
-  "subject",
+  "syllabus",
   "tuition_fee",
   "miscellaneous_fee",
-  "total",
-  "amended_from"
+  "total"
  ],
  "fields": [
-  {
-   "fieldname": "total",
-   "fieldtype": "Int",
-   "label": "Total",
-   "read_only": 1
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Fee and Syllabus",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
-   "fieldname": "subject",
-   "fieldtype": "Table",
-   "label": "Subject",
-   "options": "Subject",
-   "reqd": 1
-  },
   {
    "fieldname": "class",
    "fieldtype": "Select",
    "label": "Class",
-   "options": "X\nXI-BIO\nXII-BIO\nXI-PS\nXII-PS\nXI-COM\nXII-COM\nXI-ARTS\nXII-ARTS",
-   "reqd": 1
+   "options": "X\nXI"
+  },
+  {
+   "fieldname": "syllabus",
+   "fieldtype": "Table",
+   "label": "Syllabus",
+   "options": "Subject"
   },
   {
    "fieldname": "tuition_fee",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "Tuition fee",
-   "non_negative": 1,
-   "reqd": 1
+   "fieldtype": "Data",
+   "label": "Tuition Fee"
   },
   {
    "fieldname": "miscellaneous_fee",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "miscellaneous Fee",
-   "non_negative": 1,
-   "reqd": 1
+   "fieldtype": "Data",
+   "label": "Miscellaneous fee"
+  },
+  {
+   "fieldname": "total",
+   "fieldtype": "Data",
+   "label": "Total"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-23 18:09:46.943253",
+ "modified": "2025-07-01 16:42:49.009542",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Fee and Syllabus",

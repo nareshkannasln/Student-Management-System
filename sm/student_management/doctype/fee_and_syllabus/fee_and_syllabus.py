@@ -1,20 +1,14 @@
-# Copyright (c) 2025, Nareshkanna and contributors
-# For license information, please see license.txt
-
-# import frappe
+import frappe
 from frappe.model.document import Document
-
+from frappe.utils import flt
 
 class FeeandSyllabus(Document):
-    def validate(self):
-        self.calculate_total_fee()
-
-    def calculate_total_fee(self):
-        self.total = (self.tution_fee or 0) + (self.miscallneous_fee or 0)
-
-
     def autoname(self):
-        name = getattr(self, "class")
-        self.name = name
+        class_name = getattr(self, "class", None)
+        if class_name:
+            self.name = class_name
+        else:
+            frappe.throw("Class is required to name the document.")
 
-
+    def validate(self):
+        self.total = flt(self.tuition_fee) + flt(self.miscellaneous_fee)

@@ -17,8 +17,8 @@ class StudentRecords(Document):
 # ✅ Outside the class
 def has_permission(doc, ptype="read", user=None):
     print(f"[DEBUG] Permission check for {user} on {doc.name}")
-    
-    if not user or user == "Guest" or user == "Administrator":
+
+    if not user or user in ("Guest", "Administrator"):
         return True
 
     student_id = frappe.get_value("Admitted Student", {"email": user}, "name")
@@ -26,17 +26,17 @@ def has_permission(doc, ptype="read", user=None):
         print("[DEBUG] No Admitted Student found.")
         return False
 
-    fee = frappe.get_value("Fee Payment", {"admission_id": student_id}, ["balance_fee"], as_dict=True)
-    if not fee:
-        print("[DEBUG] No Fee Payment found.")
+    total_fee = frappe.db.get_value("Admitted Student", student_id, "total_fee") or 0
+    paid = frappe.db.sql("""
+        SELECT SUM(amount) FROM `tabFee Payment`
+        WHERE admission_id = %s
+    """, (student_id,))[0][0] or 0
+
+    if float(paid) < float(total_fee):
+        print(f"[DEBUG] Paid {paid} < Total Fee {total_fee}")
         return False
 
-    if float(fee.balance_fee or 0) > 0:
-        print(f"[DEBUG] Unpaid fee: {fee.balance_fee}")
-        return False
-
-    return doc.admission_id == student_id
-
+    return doc.roll_no == student_id
 
 def get_permission_query_conditions(user):
     if user in ("Administrator", "Guest"):

@@ -29,7 +29,7 @@ class ApplicationReview(Document):
             user.first_name = admission.name
             user.send_welcome_email = 1
             user.role_profile_name = ""
-            user.append("roles", {"role": "Student Portal User"})
+            user.append("roles", {"role": "Student User"})
             user.insert(ignore_permissions=True)
 
         admitted_doc = frappe.new_doc("Admitted Student")
@@ -62,9 +62,17 @@ class ApplicationReview(Document):
         student_name = admission.name
         student_class = admission.class_applying_for
 
-        fee_doc = frappe.get_doc("Fee and Syllabus", {"class": student_class})
+        # Get the name of the Fee and Syllabus document
+        fee_name = frappe.get_value("Fee and Syllabus", {"class": student_class}, "name")
+        if not fee_name:
+            frappe.throw(f"No 'Fee and Syllabus' document found for Class: {student_class}")
+
+        # Now safely get the full document
+        print(f"Fee and Syllabus Document Name: {fee_name}")
+        fee_doc = frappe.get_doc("Fee and Syllabus", fee_name)
+
         total_fee = fee_doc.total
-        subjects = [row.subject for row in fee_doc.subject]
+        subjects = [row.subject for row in fee_doc.syllabus]
         subject_html = "<ul>" + "".join([f"<li>{sub}</li>" for sub in subjects]) + "</ul>" if subjects else "N/A"
 
         base_url = get_url()
@@ -113,6 +121,8 @@ class ApplicationReview(Document):
         )
 
         frappe.msgprint("Admission approval email sent.")
+
+
 
     def send_rejection_email(self, admission):
         recipient_email = admission.email

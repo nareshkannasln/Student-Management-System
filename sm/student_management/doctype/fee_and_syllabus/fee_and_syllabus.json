@@ -20,9 +20,9 @@
   },
   {
    "fieldname": "syllabus",
-   "fieldtype": "Table",
-   "label": "Syllabus",
-   "options": "Subject"
+   "fieldtype": "Link",
+   "label": "Subjects",
+   "options": "Subjects Master"
   },
   {
    "fieldname": "tuition_fee",
@@ -43,7 +43,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-01 16:42:49.009542",
+ "modified": "2025-07-01 18:37:41.326270",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Fee and Syllabus",

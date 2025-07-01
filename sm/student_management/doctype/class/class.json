@@ -10,23 +10,22 @@
  "fields": [
   {
    "fieldname": "class",
-   "fieldtype": "Select",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Class",
-   "options": "X\nXI-BIO\nXII-BIO\nXI-PS\nXII-PS\nXI-COM\nXII-COM\nXI-ARTS\nXII-ARTS",
    "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-19 15:19:42.156838",
+ "modified": "2025-07-01 18:18:04.795716",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Class",
  "nsm_parent_field": "parent_class",
  "owner": "Administrator",
- "permissions": [``
+ "permissions": [
   {
    "create": 1,
    "delete": 1,

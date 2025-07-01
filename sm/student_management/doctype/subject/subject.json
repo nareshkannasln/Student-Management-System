@@ -10,16 +10,17 @@
  "fields": [
   {
    "fieldname": "subject",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Subject"
+   "label": "Subject",
+   "options": "Subjects Master"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-01 16:51:45.164449",
+ "modified": "2025-07-01 18:13:53.632069",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Subject",

@@ -9,10 +9,10 @@ class ApplicationReview(Document):
 
         admission = frappe.get_doc("Admission Application", self.admission_id)
 
-        if self.status == "Approve":
+        if self.workflow_state == "Approved":
             self.create_admitted_students(admission)
             self.send_welcome_email(admission)
-        elif self.status == "Reject":
+        elif self.workflow_state == "Rejected":
             self.send_rejection_email(admission)
 
     def create_admitted_students(self, admission):
@@ -72,7 +72,7 @@ class ApplicationReview(Document):
         fee_doc = frappe.get_doc("Fee and Syllabus", fee_name)
 
         total_fee = fee_doc.total
-        subjects = [row.subject for row in fee_doc.syllabus]
+        subjects = [row.subject for row in fee_doc.subjects]
         subject_html = "<ul>" + "".join([f"<li>{sub}</li>" for sub in subjects]) + "</ul>" if subjects else "N/A"
 
         base_url = get_url()

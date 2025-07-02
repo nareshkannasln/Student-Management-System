@@ -6,7 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "class",
-  "syllabus",
+  "subjects",
   "tuition_fee",
   "miscellaneous_fee",
   "total"
@@ -17,12 +17,6 @@
    "fieldtype": "Select",
    "label": "Class",
    "options": "X\nXI"
-  },
-  {
-   "fieldname": "syllabus",
-   "fieldtype": "Link",
-   "label": "Subjects",
-   "options": "Subjects Master"
   },
   {
    "fieldname": "tuition_fee",
@@ -38,12 +32,18 @@
    "fieldname": "total",
    "fieldtype": "Data",
    "label": "Total"
+  },
+  {
+   "fieldname": "subjects",
+   "fieldtype": "Table",
+   "label": "Subjects",
+   "options": "Subjects Master"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-01 18:37:41.326270",
+ "modified": "2025-07-02 12:08:06.203692",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Fee and Syllabus",

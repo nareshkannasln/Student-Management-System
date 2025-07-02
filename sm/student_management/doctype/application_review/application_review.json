@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "APPLICATION-REVIEW.#####",
+ "autoname": "AP-V.####",
  "creation": "2025-06-12 17:11:15.841351",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -15,8 +15,7 @@
   "class_applied_for",
   "previous_mark",
   "email",
-  "amended_from",
-  "status"
+  "amended_from"
  ],
  "fields": [
   {
@@ -82,13 +81,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Approve\nReject",
-   "reqd": 1
-  },
-  {
    "fieldname": "admission_id",
    "fieldtype": "Link",
    "label": "Admission ID",
@@ -109,7 +101,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-23 11:05:51.133903",
+ "modified": "2025-07-02 12:11:51.910258",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Application Review",

@@ -5,5 +5,7 @@
 from frappe.model.document import Document
 
 
-class subjects(Document):
-	pass
+class AdmittedStudent(Document):
+	def autoname(self):
+		name = self.get("admission_id")
+		self.name = name

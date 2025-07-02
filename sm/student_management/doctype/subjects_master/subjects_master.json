@@ -1,32 +1,25 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-07-01 18:33:38.932153",
+ "creation": "2025-07-02 12:46:58.623429",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "subjects_master_section",
   "subject_name"
  ],
  "fields": [
   {
-   "fieldname": "subjects_master_section",
-   "fieldtype": "Section Break",
-   "label": "Subjects Master"
-  },
-  {
    "fieldname": "subject_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Subject Name",
-   "reqd": 1
+   "label": "Subject Name"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-02 12:07:59.052177",
+ "modified": "2025-07-02 12:49:43.101819",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Subjects Master",

@@ -7,4 +7,4 @@
 
 sm.student_management.patches.sample_ar_patch
 
-sm.student_management.patches.subjects_name_master
+sm.student_management.patches.subjects_name_master 

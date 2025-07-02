@@ -26,17 +26,6 @@ permission_query_conditions = {
 }
 
 
-def on_session_creation(login_manager):
-    user = frappe.get_doc("User", login_manager.user)
-    if "Student" in user.roles:
-        admission_id = frappe.get_value("Admitted Student", {"email": user.email}, "name")
-        total_fee = frappe.db.get_value("Admitted Student", admission_id, "total_fee")
-        paid = frappe.db.sql("SELECT SUM(amount) FROM `tabFee Payment` WHERE admission_id=%s", admission_id)[0][0] or 0
-        if paid < total_fee:
-            frappe.throw("Please complete your fee payment before logging in.")
-
-
-
 # Apps
 # ------------------
 

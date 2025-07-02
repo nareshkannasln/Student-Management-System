@@ -1,16 +1,16 @@
 import frappe
 
 def execute():
-    if not frappe.db.table_exists("tabSubjects Master"):
+    if not frappe.db.table_exists("tabSubjects"):
         print("Subjects Master table does not exist. Skipping patch.")
         return
 
-    subject_name = ["Math", "Physics", "Chemistry", "Biology", "English", "Computer Science"]
+    subjects = ["Math", "Physics", "Chemistry", "Biology", "English", "Computer Science"]
 
-    for subj in subject_name:
-        if not frappe.db.exists("Subjects Master", {"subject_name": subj}):
+    for subj in subjects:
+        if not frappe.db.exists("Subjects", {"subjects": subj}):
             frappe.db.insert("Subjects Master", {
-                "subject_name": subj
+                "subjects": subj
             })
 
     print("Subjects Master patched successfully.")

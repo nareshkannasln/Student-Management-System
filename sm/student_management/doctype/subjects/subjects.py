@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Subjects(Document):
+class subjectss(Document):
 	pass

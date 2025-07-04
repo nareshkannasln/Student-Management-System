@@ -1,0 +1,46 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-03 16:32:16.335738",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "tuition_fee",
+  "exam_fee",
+  "total_fee"
+ ],
+ "fields": [
+  {
+   "fieldname": "tuition_fee",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Tuition Fee"
+  },
+  {
+   "fieldname": "exam_fee",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Exam Fee"
+  },
+  {
+   "fieldname": "total_fee",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Fee"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-07-03 16:43:11.952728",
+ "modified_by": "Administrator",
+ "module": "Student Management",
+ "name": "Fee Structure Child",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

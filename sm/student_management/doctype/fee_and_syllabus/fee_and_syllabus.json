@@ -7,9 +7,7 @@
  "field_order": [
   "class",
   "subjects",
-  "tuition_fee",
-  "other_fee",
-  "total_fee"
+  "fee_structure"
  ],
  "fields": [
   {
@@ -29,30 +27,17 @@
    "reqd": 1
   },
   {
-   "fieldname": "tuition_fee",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Tuition Fee",
+   "fieldname": "fee_structure",
+   "fieldtype": "Table",
+   "label": "Fee Structure",
+   "options": "Fee Structure Child",
    "reqd": 1
-  },
-  {
-   "fieldname": "other_fee",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Other Fee",
-   "reqd": 1
-  },
-  {
-   "fieldname": "total_fee",
-   "fieldtype": "Currency",
-   "label": "Total Fee",
-   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-02 18:10:59.051680",
+ "modified": "2025-07-03 16:33:05.390114",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Fee and Syllabus",

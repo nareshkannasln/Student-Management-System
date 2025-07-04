@@ -1,0 +1,97 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-03 11:46:51.824235",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "fee_payment_section",
+  "admission_id",
+  "name1",
+  "class",
+  "fee_structure",
+  "balance_fee",
+  "amount",
+  "payment_status"
+ ],
+ "fields": [
+  {
+   "fieldname": "fee_payment_section",
+   "fieldtype": "Section Break",
+   "label": "Fee payment"
+  },
+  {
+   "fieldname": "admission_id",
+   "fieldtype": "Link",
+   "label": "Admission ID",
+   "options": "Admitted Student"
+  },
+  {
+   "fetch_from": "admission_id.name1",
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "fetch_from": "admission_id.student_class",
+   "fieldname": "class",
+   "fieldtype": "Data",
+   "label": "Class",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fee_structure",
+   "fieldtype": "Table",
+   "label": "Fee Structure",
+   "options": "Fee Structure Child",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "balance_fee",
+   "fieldtype": "Currency",
+   "label": "Balance Fee",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "label": "Payment Status",
+   "options": "Full Paid\npartially paid\nunpaid\nnot yet",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-07-04 19:03:30.702809",
+ "modified_by": "Administrator",
+ "module": "Student Management",
+ "name": "Fee Payment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

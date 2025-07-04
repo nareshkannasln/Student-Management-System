@@ -7,7 +7,8 @@ from frappe.model.document import Document
 
 class FeeandSyllabus(Document):
 	def validate(self):
-		self.total_fee = self.tuition_fee + self.other_fee
+		for fee in self.fee_structure:
+			fee.total_fee = fee.tuition_fee + fee.exam_fee
 
 	def autoname(self):
 		doc_name = self.get("class")

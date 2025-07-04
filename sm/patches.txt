@@ -6,3 +6,6 @@
 # Patches added in this section will be executed after doctypes are migrated
 
 sm.student_management.patches.add_default_subjects
+
+
+sm.student_management.patches.roles_assign

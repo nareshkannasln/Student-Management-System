@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:admission_id",
  "creation": "2025-07-02 18:34:44.742616",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -14,35 +15,44 @@
   {
    "fieldname": "admission_id",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_preview": 1,
    "label": "Admission ID",
-   "options": "Application Review"
+   "options": "Admission Application",
+   "read_only": 1,
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fetch_from": "admission_id.name1",
    "fieldname": "name1",
    "fieldtype": "Data",
-   "label": "Name"
+   "label": "Name",
+   "read_only": 1
   },
   {
    "fetch_from": "admission_id.email",
    "fieldname": "email",
    "fieldtype": "Data",
-   "label": "Email"
+   "label": "Email",
+   "read_only": 1
   },
   {
-   "fetch_from": "admission_id.class_applied_for",
+   "fetch_from": "admission_id.class_applying_for",
    "fieldname": "student_class",
    "fieldtype": "Data",
-   "label": "Student Class"
+   "label": "Student Class",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-02 18:44:22.079311",
+ "modified": "2025-07-04 18:57:44.731507",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Admitted Student",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

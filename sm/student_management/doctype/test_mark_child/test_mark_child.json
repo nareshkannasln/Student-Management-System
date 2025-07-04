@@ -1,0 +1,46 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-04 11:46:10.715094",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "test_mark_section",
+  "subjects",
+  "marks"
+ ],
+ "fields": [
+  {
+   "fieldname": "test_mark_section",
+   "fieldtype": "Section Break",
+   "label": "Test Mark"
+  },
+  {
+   "fieldname": "subjects",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Subjects",
+   "options": "subjects"
+  },
+  {
+   "fieldname": "marks",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Marks"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-07-04 13:33:50.211899",
+ "modified_by": "Administrator",
+ "module": "Student Management",
+ "name": "Test Mark Child",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

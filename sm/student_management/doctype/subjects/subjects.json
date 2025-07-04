@@ -1,28 +1,28 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:subjects",
- "creation": "2025-07-02 13:11:46.959360",
+ "autoname": "field:subject_name",
+ "creation": "2025-07-02 16:45:41.011841",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "subjects"
+  "subject_name"
  ],
  "fields": [
   {
-   "fieldname": "subjects",
+   "fieldname": "subject_name",
    "fieldtype": "Data",
-   "label": "Subjects",
+   "label": "Subject Name",
    "unique": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-02 13:14:43.242631",
+ "modified": "2025-07-02 16:46:52.325882",
  "modified_by": "Administrator",
  "module": "Student Management",
- "name": "Subjects",
+ "name": "subjects",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

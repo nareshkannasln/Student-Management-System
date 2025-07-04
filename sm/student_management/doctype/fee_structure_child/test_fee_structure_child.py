@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestStudentRecords(FrappeTestCase):
+class TestFeeStructureChild(FrappeTestCase):
 	pass

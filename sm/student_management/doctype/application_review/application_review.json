@@ -14,20 +14,9 @@
   "gender",
   "class_applied_for",
   "previous_mark",
-  "email",
-  "amended_from"
+  "email"
  ],
  "fields": [
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Application Review",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
   {
    "fetch_from": "admission_id.gender",
    "fieldname": "gender",
@@ -78,6 +67,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Name",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -101,7 +91,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-02 12:11:51.910258",
+ "modified": "2025-07-03 12:15:42.467530",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Application Review",

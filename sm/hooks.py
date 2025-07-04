@@ -17,13 +17,7 @@ app_logo_url = "/assets/sm/favicon.ico"
 # on_session_creation = [
 #     "sm.auth.validate_fee_status"
 # ]
-has_permission = {
-    "Student Records": "sm.student_management.doctype.student_records.student_records.has_permission"
-}
 
-permission_query_conditions = {
-    "Student Records": "sm.student_management.doctype.student_records.student_records.get_permission_query_conditions"
-}
 
 
 # Apps

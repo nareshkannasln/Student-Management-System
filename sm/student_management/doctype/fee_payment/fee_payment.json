@@ -6,13 +6,15 @@
  "engine": "InnoDB",
  "field_order": [
   "fee_payment_section",
-  "admission_id",
+  "roll_no",
+  "email",
   "name1",
   "class",
   "fee_structure",
   "balance_fee",
   "amount",
-  "payment_status"
+  "payment_status",
+  "amended_from"
  ],
  "fields": [
   {
@@ -21,19 +23,13 @@
    "label": "Fee payment"
   },
   {
-   "fieldname": "admission_id",
-   "fieldtype": "Link",
-   "label": "Admission ID",
-   "options": "Admitted Student"
-  },
-  {
-   "fetch_from": "admission_id.name1",
+   "fetch_from": "roll_no.name1",
    "fieldname": "name1",
    "fieldtype": "Data",
    "label": "Name"
   },
   {
-   "fetch_from": "admission_id.student_class",
+   "fetch_from": "roll_no.student_class",
    "fieldname": "class",
    "fieldtype": "Data",
    "label": "Class",
@@ -63,15 +59,40 @@
   {
    "fieldname": "payment_status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Payment Status",
-   "options": "Full Paid\npartially paid\nunpaid\nnot yet",
+   "options": "Fully Paid\npartially paid\nunpaid",
    "read_only": 1
+  },
+  {
+   "fetch_from": "roll_no.email",
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "roll_no",
+   "fieldtype": "Link",
+   "label": "Roll No",
+   "options": "Admitted Student"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fee Payment",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2025-07-04 19:03:30.702809",
+ "modified": "2025-07-08 16:10:29.254951",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Fee Payment",

@@ -8,4 +8,4 @@
 sm.student_management.patches.add_default_subjects
 
 
-sm.student_management.patches.roles_assign
+sm.student_management.patches.roles_assign1

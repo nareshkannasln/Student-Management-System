@@ -1,7 +1,7 @@
 import frappe
 
 def execute():
-    roles = ["Student", "Teacher", "Administrator"]
+    roles = ["Student", "Teacher"]
 
     for role in roles:
         if not frappe.db.exists("Role", {"role_name": role}):

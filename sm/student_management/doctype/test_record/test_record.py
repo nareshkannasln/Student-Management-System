@@ -11,20 +11,20 @@ class TestRecord(Document):
             total += row.marks or 0
         self.total = total
 
-
     def autoname(self):
-          name = self.get("admisson_id")
-          self.name = name
-    def has_permission(doc, user=None):
+        self.name = self.roll_no  # Fixed typo from 'admisson_id'
+
+    def has_permission(self, user=None):
         if not user:
             user = frappe.session.user
-        # Check if user has 'Student' role
+
+        # Only restrict for Student role
         if "Student" in frappe.get_roles(user):
-            # Check if student has paid full fee
             student = frappe.db.get_value("Student", {"user": user}, "name")
             if student:
                 fee_status = frappe.db.get_value("Fee", {"student": student}, "status")
                 if fee_status == "Paid":
-                    # Allow access only to their own test record
-                    return doc.admisson_id == student
-        return False
+                    return self.roll_no == student  # Ensure 'admission_id' matches field name
+
+        # For other roles like System Manager, allow
+        return True

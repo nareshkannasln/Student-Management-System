@@ -1,7 +1,6 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:admission_id",
  "creation": "2025-07-02 18:34:44.742616",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -48,11 +47,10 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-04 18:57:44.731507",
+ "modified": "2025-07-07 11:56:46.688181",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Admitted Student",
- "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

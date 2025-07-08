@@ -5,11 +5,10 @@ class ApplicationReview(Document):
 
     def on_submit(self):
         if self.workflow_state == "Approved":
-
             admission = frappe.get_doc("Admission Application", self.admission_id)
             self.create_admitted_student(admission)
             self.create_student_user(admission)
-            self.send_welcome_email(admission)
+            self.send_acknowledgement_email(admission)
 
     def create_admitted_student(self, admission):
         if not frappe.db.exists("Admitted Student", {"email": admission.email}):
@@ -30,83 +29,82 @@ class ApplicationReview(Document):
                 "doctype": "User",
                 "email": admission.email,
                 "first_name": admission.name1,
+                "enabled": 0,  # Enable only after full fee payment
                 "user_type": "Website User",
-                "send_welcome_email": 1
+                "send_welcome_email": 0  # Send manually later after full payment
             })
             user.insert(ignore_permissions=True)
             frappe.db.commit()
-            user.add_roles("Student")
+            # Roles are added via patch, no need to add_roles()
 
-    def send_welcome_email(self, admission):
+    def send_acknowledgement_email(self, admission):
         fee_syllabus = frappe.get_doc("Fee and Syllabus", admission.class_applying_for)
-  
-        if self.workflow_state == "Approved":
-            fee_rows = ""
-            for idx, row in enumerate(fee_syllabus.fee_structure, start=1):
-                fee_rows += f"""
-                    <tr>
-                        <td>{idx}</td>
-                        <td>{row.tuition_fee}</td>
-                        <td>{row.exam_fee}</td>
-                        <td>{row.total_fee}</td>
-                    </tr>
-                """
 
-            fee_table = f"""
-                <table border="1" cellpadding="5" cellspacing="0">
-                    <tr>
-                        <th>No.</th>
-                        <th>Tuition Fee</th>
-                        <th>Exam Fee</th>
-                        <th>Total Fee</th>
-                    </tr>
-                    {fee_rows}
-                </table>
+        # Fee Table
+        fee_rows = ""
+        for idx, row in enumerate(fee_syllabus.fee_structure, start=1):
+            fee_rows += f"""
+                <tr>
+                    <td>{idx}</td>
+                    <td>{row.tuition_fee}</td>
+                    <td>{row.exam_fee}</td>
+                    <td>{row.total_fee}</td>
+                </tr>
             """
 
-            # Syllabus Table
-            syllabus_rows = "".join(
-                f"<tr><td>{subject.subject_name}</td></tr>" for subject in fee_syllabus.subjects
-            )
-            syllabus_table = f"""
-                <table border="1" cellpadding="5" cellspacing="0">
-                    <tr><th>Subject</th></tr>
-                    {syllabus_rows}
-                </table>
-            """
+        fee_table = f"""
+            <table border="1" cellpadding="5" cellspacing="0">
+                <tr>
+                    <th>No.</th>
+                    <th>Tuition Fee</th>
+                    <th>Exam Fee</th>
+                    <th>Total Fee</th>
+                </tr>
+                {fee_rows}
+            </table>
+        """
 
-            # Email Content
-            message = f"""
-                <p>Hello <b>{admission.name1}</b> of <strong>{admission.name}</strong>,</p>
-                <p>Your admission has been {self.workflow_state}for Class <strong>{admission.class_applying_for}</strong>.</p>
+        # Syllabus Table
+        syllabus_rows = "".join(
+            f"<tr><td>{subject.subject_name}</td></tr>" for subject in fee_syllabus.subjects
+        )
+        syllabus_table = f"""
+            <table border="1" cellpadding="5" cellspacing="0">
+                <tr><th>Subject</th></tr>
+                {syllabus_rows}
+            </table>
+        """
 
-                <h4>Fee Structure</h4>
-                {fee_table}
+        # Payment Link (with admission_id for prefill)
+        base_url = frappe.utils.get_url()
+        payment_link = f"{base_url}/fee-payment?admission_id={admission.name}"
 
-                <h4>Syllabus</h4>
-                {syllabus_table}
+        # Email Body
+        message = f"""
+            <p>Hello <b>{admission.name1}</b> of <strong>{admission.name}</strong>,</p>
+            <p>Your admission has been <b>{self.workflow_state}</b> for Class <strong>{admission.class_applying_for}</strong>.</p>
 
-                <p>Please proceed with the fee payment at your earliest convenience.</p>
-                <br>
-                <p>Regards,<br>Admissions Office</p>
-            """
+            <h4>Fee Structure</h4>
+            {fee_table}
 
-            subject = "Admission Approved - Fee & Syllabus Details"
+            <h4>Syllabus</h4>
+            {syllabus_table}
 
-        elif self.workflow_state == "Rejected":
-            subject = "Admission Application Status"
-            message = f"""
-                <p>Hello {admission.name},</p>
-                <p>We regret to inform you that your admission application for Class <strong>{admission.class_applying_for}</strong> has been <b>{self.workflow_state}</b>.</p>
-                <p>If you have any questions, please contact our admissions office.</p>
-                <br>
-                <p>Regards,<br>Admissions Team</p>
-            """
+            <p>Please proceed with the fee payment at your earliest convenience.</p>
+            <p>
+                <a href="{payment_link}" style="background-color:#4CAF50;color:white;padding:10px 15px;text-decoration:none;border-radius:5px;">
+                    Pay Fee Now
+                </a>
+            </p>
 
-        # Send the email
+            <br>
+            <p>Regards,<br>Admissions Office</p>
+        """
+
+        # Send email
         frappe.sendmail(
             recipients=admission.email,
-            subject=subject,
+            subject="Admission Approved - Fee & Syllabus Details",
             message=message
         )
-        frappe.msgprint(f"Email sent to {admission.email} regarding application status.")
+        frappe.msgprint(f"Acknowledgement email sent to {admission.email}")

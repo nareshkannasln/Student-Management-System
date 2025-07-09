@@ -27,14 +27,17 @@ class FeePayment(Document):
 
         if paid >= total_fee:
             self.payment_status = "Fully Paid"
+            print(f"Payment status set to Fully Paid ")
             self.enable_user_and_send_welcome(self.email)
+            print(f"User enabled and welcome email sent for {self.email}")
         elif paid > 0:
             self.payment_status = "Partially Paid"
         else:
             self.payment_status = "Unpaid"
 
     def enable_user_and_send_welcome(self, email):
-        # frappe.throw("Enabling user and sending welcome email is not allowed in this context. Please use the appropriate method to handle user creation and email notifications.	")
+        print("Working")
+    # frappe.throw("Enabling user and sending welcome email is not allowed in this context. Please use the appropriate method to handle user creation and email notifications.	")
         frappe.msgprint(f"Processing email: {email}")
 
         if not frappe.db.exists("User", email):

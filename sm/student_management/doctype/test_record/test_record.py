@@ -12,7 +12,7 @@ class TestRecord(Document):
         self.total = total
 
     def autoname(self):
-        self.name = self.roll_no  # Fixed typo from 'admisson_id'
+        self.name = f" {self.roll_no}-{self.test_name}"  # Fixed typo from 'admisson_id'
 
     def has_permission(self, user=None):
         if not user:

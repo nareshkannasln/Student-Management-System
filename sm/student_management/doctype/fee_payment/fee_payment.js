@@ -4,8 +4,8 @@ frappe.ui.form.on('Fee Payment', {
 
         // 1. Calculate total for each row and overall total
         (frm.doc.fee_structure_child || []).forEach(row => {
-            row.total_fee = (row.tuition_fee || 0) + (row.exam_fee || 0);  // ✅ Assign the value
-            total_fee = row.total_fee;  // ✅ Add to grand total
+            row.total_fee = (row.tuition_fee || 0) + (row.exam_fee || 0);  // Assign the value
+            total_fee = row.total_fee;  // Add to grand total
         });
 
         // 2. Set total fee and balance

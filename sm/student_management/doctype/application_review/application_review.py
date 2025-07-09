@@ -5,16 +5,37 @@ class ApplicationReview(Document):
 
     def on_submit(self):
         if self.workflow_state == "Approved":
-            admission = frappe.get_doc("Admission Application", self.admission_id)
-            self.create_admitted_student(admission)
-            self.create_student_user(admission)
-            self.send_acknowledgement_email(admission)
+            try:
+                admission = frappe.get_doc("Admission Application", self.admission_id)    
+                # admit_student = frappe.get_doc("Admitted Student", {"roll_no": self.name})  #
+            except Exception as e:
+                frappe.log_error(frappe.get_traceback(), f"Error fetching Admission Application for ID: {self.admission_id}")
+                frappe.throw("Unable to fetch Admission Application. Please check the logs.")
+
+            try:
+                self.create_admitted_student(admission)
+            except Exception as e:
+                frappe.log_error(frappe.get_traceback(), f"Error creating Admitted Student for ID: {self.admission_id}")
+                frappe.throw("Failed to create Admitted Student. Please check the logs.")
+
+            try:
+                self.create_student_user(admission)
+            except Exception as e:
+                frappe.log_error(frappe.get_traceback(), f"Error creating User for Admission ID: {self.admission_id}")
+                frappe.throw("Failed to create Student User. Please check the logs.")
+
+            try:
+                self.send_acknowledgement_email(admission)
+            except Exception as e:
+                frappe.log_error(frappe.get_traceback(), f"Error sending acknowledgement email for Admission ID: {self.admission_id}")
+                frappe.msgprint("Admission approved, but email could not be sent. Check error logs.")
+
 
     def create_admitted_student(self, admission):
         if not frappe.db.exists("Admitted Student", {"email": admission.email}):
             admitted_student = frappe.get_doc({
                 "doctype": "Admitted Student",
-                "student_name": admission.name,
+                "student_name": admission.name1,
                 "email": admission.email,
                 "student_class": admission.class_applying_for,
                 "admission_id": admission.name
@@ -75,9 +96,13 @@ class ApplicationReview(Document):
             </table>
         """
 
-        # Payment Link (with admission_id for prefill)
+        # ✅ Get roll_no from Admitted Student
+        admitted_student = frappe.get_doc("Admitted Student", {"admission_id": admission.name})
+        roll_no = admitted_student.name
+
+        # ✅ Final Payment Link
         base_url = frappe.utils.get_url()
-        payment_link = f"{base_url}/fee-payment?admission_id={admission.name}"
+        payment_link = f"{base_url}/fee-payment?roll_no={roll_no}"
 
         # Email Body
         message = f"""
@@ -108,3 +133,4 @@ class ApplicationReview(Document):
             message=message
         )
         frappe.msgprint(f"Acknowledgement email sent to {admission.email}")
+

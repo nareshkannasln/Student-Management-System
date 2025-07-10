@@ -64,13 +64,14 @@
    "fieldname": "roll_no",
    "fieldtype": "Link",
    "label": "Roll No",
-   "options": "Admitted Student"
+   "options": "Admitted Student",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-08 12:27:15.442597",
+ "modified": "2025-07-10 10:46:08.850267",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Test Record",

@@ -2,36 +2,51 @@ import frappe
 from frappe.model.document import Document
 
 class FeePayment(Document):
-    def autoname(self):
-        # Generate transaction name: ROLLNO-TNX001
-        last_fee = frappe.db.get_value(
-            "Fee Payment",
-            {"roll_no": self.roll_no},
-            ["name"],
-            order_by="creation desc"
-        )
-        if last_fee and "-" in last_fee:
-            try:
-                last_num = int(last_fee.split("-")[-1].replace("TNX", ""))
-            except ValueError:
-                last_num = 0
-        else:
+  def autoname(self):
+    # Get the latest TNX number used
+    last_name = frappe.db.get_value(
+        "Fee Payment",
+        filters={"name": ["like", "TNX%"]},
+        fieldname="name",
+        order_by="creation desc"
+    )
+
+    if last_name and "TNX" in last_name:
+        try:
+            last_num = int(last_name.replace("TNX", ""))
+        except ValueError:
             last_num = 0
-        new_num = last_num + 1
-        self.name = f"{self.roll_no}-TNX{new_num:03d}"
+    else:
+        last_num = 0
 
-    def after_save(self):
-        frappe.msgprint("after_save called")  # For debug
-        paid = self.amount or 0
-        total_fee = sum(row.total_fee or 0 for row in self.fee_structure)
+    new_num = last_num + 1
+    self.name = f"TNX{new_num:03d}"
 
-        if paid >= total_fee:
-            self.payment_status = "Fully Paid"
+ 
+    def validate(self):
+        paid_now = self.amount or 0
+        self.total_fee = sum(row.total_fee or 0 for row in self.fee_structure)
+
+        # Get sum of all previous payments made by this roll_no (excluding current doc)
+        previous_payments = frappe.db.sql("""
+            SELECT SUM(amount) FROM `tabFee Payment`
+            WHERE roll_no = %s AND name != %s
+        """, (self.roll_no, self.name))[0][0] or 0
+
+        total_paid = previous_payments + paid_now
+        self.balance_fee = self.total_fee - total_paid
+
+
+        if total_paid == self.total_fee:
+            self.payment_status = "Fully Paid"            
             print(f"Payment status set to Fully Paid ")
+            frappe.msgprint(f"Payment status set to Fully Paid for {self.balance_fee}")
             self.enable_user_and_send_welcome(self.email)
             print(f"User enabled and welcome email sent for {self.email}")
-        elif paid > 0:
-            self.payment_status = "Partially Paid"
+        elif total_paid > 0:
+            frappe.msgprint(f"Payment status set to Partially Paid for {self.balance_fee}")
+            self.payment_status = "Partially paid"
+            print(f"{self.balance_fee}")
         else:
             self.payment_status = "Unpaid"
 

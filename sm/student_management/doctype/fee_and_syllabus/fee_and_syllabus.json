@@ -1,49 +1,43 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-07-01 16:31:00.911680",
+ "creation": "2025-07-02 17:31:46.943585",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "class",
   "subjects",
-  "tuition_fee",
-  "miscellaneous_fee",
-  "total"
+  "fee_structure"
  ],
  "fields": [
   {
+   "fetch_from": "class_name.class",
    "fieldname": "class",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Class",
-   "options": "X\nXI"
-  },
-  {
-   "fieldname": "tuition_fee",
-   "fieldtype": "Data",
-   "label": "Tuition Fee"
-  },
-  {
-   "fieldname": "miscellaneous_fee",
-   "fieldtype": "Data",
-   "label": "Miscellaneous fee"
-  },
-  {
-   "fieldname": "total",
-   "fieldtype": "Data",
-   "label": "Total"
+   "options": "X\nXI\nXII",
+   "reqd": 1
   },
   {
    "fieldname": "subjects",
    "fieldtype": "Table",
    "label": "Subjects",
-   "options": "Subjects Master"
+   "options": "Subjects Child",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fee_structure",
+   "fieldtype": "Table",
+   "label": "Fee Structure",
+   "options": "Fee Structure Child",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-02 12:49:28.958162",
+ "modified": "2025-07-03 16:33:05.390114",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Fee and Syllabus",

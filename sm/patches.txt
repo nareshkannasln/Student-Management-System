@@ -5,6 +5,7 @@
 [post_model_sync]
 # Patches added in this section will be executed after doctypes are migrated
 
-sm.student_management.patches.sample_ar_patch
+sm.student_management.patches.add_default_subjects
 
-sm.student_management.patches.subjects_name_master 
+
+sm.student_management.patches.roles_assign1

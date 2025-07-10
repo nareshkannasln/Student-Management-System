@@ -1,8 +1,8 @@
 // Copyright (c) 2025, Nareshkanna and contributors
 // For license information, please see license.txt
 
-// frappe.ui.form.on("Class", {
-// 	refresh(frm) {
+frappe.query_reports["Test Record"] = {
+	"filters": [
 
-// 	},
-// });
+	]
+};

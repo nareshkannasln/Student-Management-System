@@ -1,76 +1,101 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{DD}{MM}{YY}-TXID{####}",
- "creation": "2025-06-24 17:06:58.501744",
+ "creation": "2025-07-03 11:46:51.824235",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "fee_payment_section",
-  "admission_id",
+  "roll_no",
+  "email",
   "name1",
   "class",
-  "total_fee",
-  "amount",
+  "fee_structure",
   "balance_fee",
-  "email"
+  "amount",
+  "payment_status",
+  "amended_from"
  ],
  "fields": [
   {
    "fieldname": "fee_payment_section",
    "fieldtype": "Section Break",
-   "label": "Fee Payment"
+   "label": "Fee payment"
   },
   {
-   "fieldname": "admission_id",
-   "fieldtype": "Link",
-   "label": "admission ID",
-   "options": "Admitted Student"
-  },
-  {
-   "fetch_from": "admission_id.student_name",
+   "fetch_from": "roll_no.name1",
    "fieldname": "name1",
    "fieldtype": "Data",
    "label": "Name"
   },
   {
-   "fetch_from": "admission_id.class",
+   "fetch_from": "roll_no.student_class",
    "fieldname": "class",
    "fieldtype": "Data",
-   "label": "Class"
+   "label": "Class",
+   "read_only": 1
   },
   {
-   "fetch_from": "admission_id.total_fee",
-   "fieldname": "total_fee",
-   "fieldtype": "Currency",
-   "label": "Total Fee"
+   "fieldname": "fee_structure",
+   "fieldtype": "Table",
+   "label": "Fee Structure",
+   "options": "Fee Structure Child",
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "amount",
    "fieldtype": "Currency",
-   "label": "Amount"
+   "in_list_view": 1,
+   "label": "Amount",
+   "reqd": 1
   },
   {
    "fieldname": "balance_fee",
-   "fieldtype": "Int",
+   "fieldtype": "Currency",
    "label": "Balance Fee",
    "read_only": 1
   },
   {
-   "fetch_from": "admission_id.email",
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Payment Status",
+   "options": "Fully Paid\nPartially paid\nUnpaid",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "roll_no.email",
    "fieldname": "email",
    "fieldtype": "Data",
-   "label": "Email"
+   "label": "Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "roll_no",
+   "fieldtype": "Link",
+   "label": "Roll No",
+   "options": "Admitted Student"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fee Payment",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2025-06-30 13:41:29.244393",
+ "modified": "2025-07-10 16:15:32.197514",
  "modified_by": "Administrator",
  "module": "Student Management",
  "name": "Fee Payment",
- "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

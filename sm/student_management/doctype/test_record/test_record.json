@@ -1,0 +1,97 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-04 11:43:49.337525",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "test_record_section",
+  "roll_no",
+  "email",
+  "name1",
+  "class",
+  "test_name",
+  "test_marks",
+  "total"
+ ],
+ "fields": [
+  {
+   "fieldname": "test_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Test Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "test_marks",
+   "fieldtype": "Table",
+   "label": "Test Marks",
+   "options": "Test Mark Child"
+  },
+  {
+   "fieldname": "total",
+   "fieldtype": "Int",
+   "label": "Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "test_record_section",
+   "fieldtype": "Section Break",
+   "label": "Test Record"
+  },
+  {
+   "fetch_from": "roll_no.name1",
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "roll_no.student_class",
+   "fieldname": "class",
+   "fieldtype": "Data",
+   "label": "Class",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "roll_no.email",
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "roll_no",
+   "fieldtype": "Link",
+   "label": "Roll No",
+   "options": "Admitted Student",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-07-10 10:46:08.850267",
+ "modified_by": "Administrator",
+ "module": "Student Management",
+ "name": "Test Record",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

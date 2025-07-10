@@ -1,8 +1,9 @@
 {
  "actions": [],
- "autoname": "field:subject_name",
- "creation": "2025-07-02 12:46:58.623429",
+ "allow_rename": 1,
+ "creation": "2025-07-02 17:33:30.770071",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "subject_name"
@@ -13,19 +14,17 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Subject Name",
-   "options": "Subjects",
-   "unique": 1
+   "options": "subjects"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-02 13:14:02.151533",
+ "modified": "2025-07-02 17:34:07.493979",
  "modified_by": "Administrator",
  "module": "Student Management",
- "name": "Subjects Master",
- "naming_rule": "By fieldname",
+ "name": "Subjects Child",
  "owner": "Administrator",
  "permissions": [],
  "row_format": "Dynamic",
